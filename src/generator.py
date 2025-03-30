@@ -3,7 +3,8 @@ import hashlib
 from itertools import combinations
 from datetime import datetime
 from transformations import apply_transformation
-from variant_tracker import load_executed_variants
+from database.variant_tracker import load_executed_variants
+from hash_utils import gerar_hash_codigo_logico
 
 def generate_variants(lines, modifiable_lines, physical_to_logical, operation_map, output_folder, file_name, executed_file="executados.txt"):
     """
@@ -32,8 +33,7 @@ def generate_variants(lines, modifiable_lines, physical_to_logical, operation_ma
                 modified_lines[idx] = apply_transformation(modified_lines[idx], operation_map)
             
             # Gerar hash para rastreamento
-            codigo_texto = "".join(modified_lines)
-            codigo_hash = hashlib.sha256(codigo_texto.encode()).hexdigest()
+            codigo_hash = gerar_hash_codigo_logico(modified_lines, physical_to_logical)
             
             # Verifica se a variante já foi executada
             if codigo_hash in executed_variants:
