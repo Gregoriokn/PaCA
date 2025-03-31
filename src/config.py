@@ -4,8 +4,8 @@ from config_base import BASE_CONFIG
 # Configurações do projeto
 CONFIG = {
     **BASE_CONFIG,  # Inclui todas as configurações base
-    "input_file": "inversek2j/src/kinematics.cpp",
-    "output_folder": "codigos_modificados",
+    "input_file": "axbench/applications/inversek2j/src/kinematics.cpp",
+    "output_folder": "storage/variantes",  # Modificado aqui
     "operations_map": {'*': 'FMULX', '+': 'FADDX', '-': 'FSUBX'}
 }
 

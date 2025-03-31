@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 axbench/
 prof5/
+storage/
 .Python
 build/
 develop-eggs/
