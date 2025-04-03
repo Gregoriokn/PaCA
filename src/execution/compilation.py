@@ -23,7 +23,7 @@ def compile_variant(variant_file, variant_hash, config, status_monitor):
     compile_cmd = [
         "riscv32-unknown-elf-g++",
         "-march=rv32imafdc",
-        "-I", os.path.dirname(config["original_file"]), 
+        "-I", os.path.dirname(config["original_file"]),
         "-I", config["input_dir"],
         "-c", variant_file,
         "-o", obj_file,

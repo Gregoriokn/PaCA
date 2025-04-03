@@ -14,7 +14,9 @@ from utils.file_utils import ensure_dirs, short_hash, generate_report, save_chec
 
 # Dicionário de aplicações disponíveis
 AVAILABLE_APPS = {
-    "kinematics": "apps.kinematics"
+     #"nova_aplicacao": "apps.nova_aplicacao",  Adicione esta linha
+    "kinematics": "apps.kinematics",
+    "fft": "apps.fft"
 }
 
 def check_dependencies():

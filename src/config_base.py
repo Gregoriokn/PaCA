@@ -6,7 +6,7 @@ BASE_CONFIG = {
     "executables_dir": "storage/executable",
     "outputs_dir": "storage/output",
     "logs_dir": "storage/logs",  
-    "input_dir": "codigos_modificados",
+    "input_dir": "storage/variantes",  # Altere para o local correto
     "prof5_results_dir": "storage/prof5_results",
     "dump_dir": "storage/dump",
     
@@ -16,6 +16,6 @@ BASE_CONFIG = {
     "failed_variants_file": "data/reference/falhas.txt",
     
     # Configurações do Prof5
-    "prof5_model": "../prof5/models/APPROX_1.json",
-    "prof5_executable": "../prof5/prof5"
+    "prof5_model": "prof5/models/APPROX_1.json",
+    "prof5_executable": "prof5/prof5"            
 }

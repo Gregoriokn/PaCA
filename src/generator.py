@@ -43,7 +43,8 @@ def generate_variants(lines, modifiable_lines, physical_to_logical, operation_ma
                 continue
                 
             # Nome do arquivo de saída
-            output_file = f"{base_path}_{len(modified_files) + 1}.c"
+            nome_base, extensao = os.path.splitext(file_name)
+            output_file = f"{base_path}_{len(modified_files) + 1}{extensao}"
             
             # Salvamento com tratamento especial para manter formatação
             with open(output_file, 'w', newline='') as f:
