@@ -1,0 +1,1056 @@
+{
+  "trap_handling": {
+    "cycles": 0,
+    "power": 0,
+    "latency": 0.0,
+    "energy": 0.0
+  },
+  "main": {
+    "cycles": 50472,
+    "power": 65276.71921685839,
+    "latency": 4.0377600000000005e-05,
+    "energy": 0.052221375373486714
+  },
+  "atoi": {
+    "cycles": 6196,
+    "power": 9527.614008959003,
+    "latency": 4.9568000000000006e-06,
+    "energy": 0.007622091207167202
+  },
+  "strtol": {
+    "cycles": 8,
+    "power": 7.40168426389681,
+    "latency": 6.4e-09,
+    "energy": 5.9213474111174476e-06
+  },
+  "_strtol_l.constprop.0": {
+    "cycles": 6308,
+    "power": 9707.831428168143,
+    "latency": 5.0464000000000005e-06,
+    "energy": 0.007766265142534515
+  },
+  "strlen": {
+    "cycles": 49360,
+    "power": 67376.40887209158,
+    "latency": 3.9488e-05,
+    "energy": 0.053901127097673265
+  },
+  "_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERjj": {
+    "cycles": 21,
+    "power": 28.908547423317117,
+    "latency": 1.68e-08,
+    "energy": 2.3126837938653697e-05
+  },
+  "_Znwj": {
+    "cycles": 30,
+    "power": 16.38021506820144,
+    "latency": 2.4e-08,
+    "energy": 1.3104172054561154e-05
+  },
+  "malloc": {
+    "cycles": 20,
+    "power": 12.79723379729445,
+    "latency": 1.6e-08,
+    "energy": 1.0237787037835559e-05
+  },
+  "_malloc_r": {
+    "cycles": 14164,
+    "power": 22911.40754970475,
+    "latency": 1.1331200000000001e-05,
+    "energy": 0.0183291260397638
+  },
+  "__malloc_lock": {
+    "cycles": 30,
+    "power": 36.454254284096,
+    "latency": 2.4e-08,
+    "energy": 2.9163403427276803e-05
+  },
+  "__malloc_unlock": {
+    "cycles": 30,
+    "power": 36.454254284096,
+    "latency": 2.4e-08,
+    "energy": 2.9163403427276803e-05
+  },
+  "memcpy": {
+    "cycles": 106316,
+    "power": 156573.28645741486,
+    "latency": 8.50528e-05,
+    "energy": 0.1252586291659319
+  },
+  "_ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1Ev": {
+    "cycles": 45,
+    "power": 49.98279230650364,
+    "latency": 3.6e-08,
+    "energy": 3.998623384520291e-05
+  },
+  "_ZNSt9basic_iosIcSt11char_traitsIcEEC1Ev": {
+    "cycles": 22,
+    "power": 25.7501970444035,
+    "latency": 1.7600000000000002e-08,
+    "energy": 2.0600157635522802e-05
+  },
+  "_ZNSt8ios_baseC1Ev": {
+    "cycles": 62,
+    "power": 100.92742299364976,
+    "latency": 4.96e-08,
+    "energy": 8.07419383949198e-05
+  },
+  "_ZNSt6localeC1Ev": {
+    "cycles": 80,
+    "power": 80.95492376092884,
+    "latency": 6.4e-08,
+    "energy": 6.476393900874308e-05
+  },
+  "_ZNSt6locale13_S_initializeEv": {
+    "cycles": 20,
+    "power": 24.819488751473962,
+    "latency": 1.6e-08,
+    "energy": 1.985559100117917e-05
+  },
+  "_ZNSoC2Ev": {
+    "cycles": 16,
+    "power": 10.74955429355961,
+    "latency": 1.28e-08,
+    "energy": 8.599643434847688e-06
+  },
+  "_ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E": {
+    "cycles": 50,
+    "power": 41.38990511184657,
+    "latency": 4e-08,
+    "energy": 3.311192408947726e-05
+  },
+  "_ZNSt8ios_base7_M_initEv": {
+    "cycles": 52,
+    "power": 43.738943338588534,
+    "latency": 4.16e-08,
+    "energy": 3.499115467087083e-05
+  },
+  "_ZNSt6localeaSERKS_": {
+    "cycles": 46,
+    "power": 33.38833793995154,
+    "latency": 3.68e-08,
+    "energy": 2.671067035196123e-05
+  },
+  "_ZNSt6localeD1Ev": {
+    "cycles": 28,
+    "power": 45.79808231568852,
+    "latency": 2.2400000000000002e-08,
+    "energy": 3.6638465852550814e-05
+  },
+  "_ZNSt9basic_iosIcSt11char_traitsIcEE15_M_cache_localeERKSt6locale": {
+    "cycles": 86,
+    "power": 68.56736210975292,
+    "latency": 6.880000000000001e-08,
+    "energy": 5.485388968780234e-05
+  },
+  "_ZSt9has_facetISt5ctypeIcEEbRKSt6locale": {
+    "cycles": 64,
+    "power": 66.53949083670054,
+    "latency": 5.12e-08,
+    "energy": 5.323159266936043e-05
+  },
+  "_ZNKSt6locale2id5_M_idEv": {
+    "cycles": 14434,
+    "power": 7516.867233380595,
+    "latency": 1.15472e-05,
+    "energy": 0.006013493786704477
+  },
+  "__dynamic_cast": {
+    "cycles": 50862,
+    "power": 31007.71409669849,
+    "latency": 4.0689600000000004e-05,
+    "energy": 0.024806171277358794
+  },
+  "_ZNK10__cxxabiv121__vmi_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE": {
+    "cycles": 68877,
+    "power": 41126.52324446781,
+    "latency": 5.51016e-05,
+    "energy": 0.032901218595574246
+  },
+  "_ZNKSt9type_infoeqERKS_": {
+    "cycles": 28864,
+    "power": 32892.85768729383,
+    "latency": 2.30912e-05,
+    "energy": 0.026314286149835064
+  },
+  "strcmp": {
+    "cycles": 75904,
+    "power": 123777.96310293031,
+    "latency": 6.07232e-05,
+    "energy": 0.09902237048234426
+  },
+  "_ZSt9use_facetISt5ctypeIcEERKT_RKSt6locale": {
+    "cycles": 30780,
+    "power": 31639.892780658283,
+    "latency": 2.4624e-05,
+    "energy": 0.025311914224526628
+  },
+  "_ZSt9has_facetISt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale": {
+    "cycles": 64,
+    "power": 66.53949083670054,
+    "latency": 5.12e-08,
+    "energy": 5.323159266936043e-05
+  },
+  "_ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE": {
+    "cycles": 441,
+    "power": 201.11609973572712,
+    "latency": 3.5280000000000004e-07,
+    "energy": 0.0001608928797885817
+  },
+  "_ZSt9use_facetISt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEERKT_RKSt6locale": {
+    "cycles": 60,
+    "power": 61.67620425079588,
+    "latency": 4.8e-08,
+    "energy": 4.9340963400636704e-05
+  },
+  "_ZSt9has_facetISt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale": {
+    "cycles": 64,
+    "power": 66.53949083670054,
+    "latency": 5.12e-08,
+    "energy": 5.323159266936043e-05
+  },
+  "_ZSt9use_facetISt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEERKT_RKSt6locale": {
+    "cycles": 60,
+    "power": 61.67620425079588,
+    "latency": 4.8e-08,
+    "energy": 4.9340963400636704e-05
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEEC1Ev": {
+    "cycles": 54,
+    "power": 70.2391468795337,
+    "latency": 4.32e-08,
+    "energy": 5.6191317503626964e-05
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEEC1Ev": {
+    "cycles": 14,
+    "power": 22.4023270147407,
+    "latency": 1.1200000000000001e-08,
+    "energy": 1.792186161179256e-05
+  },
+  "_ZNSt12__basic_fileIcEC1EPi": {
+    "cycles": 5,
+    "power": 7.15321963877447,
+    "latency": 4e-09,
+    "energy": 5.7225757110195755e-06
+  },
+  "_ZSt9has_facetISt7codecvtIcc10_mbstate_tEEbRKSt6locale": {
+    "cycles": 32,
+    "power": 33.26974541835027,
+    "latency": 2.56e-08,
+    "energy": 2.6615796334680216e-05
+  },
+  "_ZSt9use_facetISt7codecvtIcc10_mbstate_tEERKT_RKSt6locale": {
+    "cycles": 30,
+    "power": 30.83810212539794,
+    "latency": 2.4e-08,
+    "energy": 2.4670481700318352e-05
+  },
+  "_ZNSt14basic_ofstreamIcSt11char_traitsIcEE4openERKNSt7__cxx1112basic_stringIcS1_SaIcEEESt13_Ios_Openmode": {
+    "cycles": 19,
+    "power": 14.851284797239169,
+    "latency": 1.52e-08,
+    "energy": 1.1881027837791336e-05
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE4openERKNSt7__cxx1112basic_stringIcS1_SaIcEEESt13_Ios_Openmode": {
+    "cycles": 4,
+    "power": 4.84223750443792,
+    "latency": 3.2e-09,
+    "energy": 3.8737900035503354e-06
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode": {
+    "cycles": 50,
+    "power": 37.60563730371485,
+    "latency": 4e-08,
+    "energy": 3.008450984297188e-05
+  },
+  "_ZNKSt12__basic_fileIcE7is_openEv": {
+    "cycles": 20,
+    "power": 24.308274885447723,
+    "latency": 1.6e-08,
+    "energy": 1.944661990835818e-05
+  },
+  "_ZNSt12__basic_fileIcE4openEPKcSt13_Ios_Openmodei": {
+    "cycles": 6224,
+    "power": 9549.764524823964,
+    "latency": 4.9792000000000005e-06,
+    "energy": 0.007639811619859171
+  },
+  "fopen": {
+    "cycles": 7,
+    "power": 7.40168426389681,
+    "latency": 5.6000000000000005e-09,
+    "energy": 5.9213474111174476e-06
+  },
+  "_fopen_r": {
+    "cycles": 59,
+    "power": 60.12626691421963,
+    "latency": 4.72e-08,
+    "energy": 4.8101013531375706e-05
+  },
+  "__sflags": {
+    "cycles": 18,
+    "power": 29.09173739022533,
+    "latency": 1.44e-08,
+    "energy": 2.3273389912180263e-05
+  },
+  "__sfp": {
+    "cycles": 98,
+    "power": 117.07857478307761,
+    "latency": 7.84e-08,
+    "energy": 9.366285982646209e-05
+  },
+  "__sinit.part.0": {
+    "cycles": 108,
+    "power": 138.15873910533122,
+    "latency": 8.64e-08,
+    "energy": 0.00011052699128426499
+  },
+  "memset": {
+    "cycles": 416,
+    "power": 440.01362815041637,
+    "latency": 3.328e-07,
+    "energy": 0.0003520109025203331
+  },
+  "_open_r": {
+    "cycles": 22,
+    "power": 15.11983742131443,
+    "latency": 1.7600000000000002e-08,
+    "energy": 1.2095869937051546e-05
+  },
+  "_open": {
+    "cycles": 5390,
+    "power": 7298.340699327692,
+    "latency": 4.312e-06,
+    "energy": 0.005838672559462153
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE27_M_allocate_internal_bufferEv": {
+    "cycles": 20,
+    "power": 12.57226700776441,
+    "latency": 1.6e-08,
+    "energy": 1.0057813606211527e-05
+  },
+  "_Znaj": {
+    "cycles": 3,
+    "power": 4.84223750443792,
+    "latency": 2.4e-09,
+    "energy": 3.8737900035503354e-06
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE13_M_set_bufferEi": {
+    "cycles": 11323,
+    "power": 5858.335010612459,
+    "latency": 9.0584e-06,
+    "energy": 0.004686668008489967
+  },
+  "_ZNSt9basic_iosIcSt11char_traitsIcEE5clearESt12_Ios_Iostate": {
+    "cycles": 9,
+    "power": 3.6454254284096,
+    "latency": 7.2e-09,
+    "energy": 2.9163403427276804e-06
+  },
+  "_sbrk_r": {
+    "cycles": 38,
+    "power": 30.23967484262886,
+    "latency": 3.04e-08,
+    "energy": 2.419173987410309e-05
+  },
+  "_sbrk": {
+    "cycles": 742,
+    "power": 913.017976047138,
+    "latency": 5.936e-07,
+    "energy": 0.0007304143808377104
+  },
+  "_Z23radix2DitCooleyTykeyFftiPiP7ComplexS1_": {
+    "cycles": 124813,
+    "power": 213060.76907638612,
+    "latency": 9.98504e-05,
+    "energy": 0.1704486152611089
+  },
+  "_Z14calcFftIndicesiPi": {
+    "cycles": 9906,
+    "power": 13707.033959437644,
+    "latency": 7.9248e-06,
+    "energy": 0.010965627167550117
+  },
+  "log2f": {
+    "cycles": 15,
+    "power": 15.616806722100721,
+    "latency": 1.2e-08,
+    "energy": 1.2493445377680578e-05
+  },
+  "logf": {
+    "cycles": 16,
+    "power": 3.6454254284096,
+    "latency": 1.28e-08,
+    "energy": 2.9163403427276804e-06
+  },
+  "__ieee754_logf": {
+    "cycles": 6249,
+    "power": 9597.551189466867,
+    "latency": 4.9992e-06,
+    "energy": 0.007678040951573494
+  },
+  "_Z9fftSinCosfPfS_": {
+    "cycles": 82944,
+    "power": 39811.90290159274,
+    "latency": 6.63552e-05,
+    "energy": 0.03184952232127419
+  },
+  "sin": {
+    "cycles": 73814,
+    "power": 72745.74093915326,
+    "latency": 5.90512e-05,
+    "energy": 0.05819659275132261
+  },
+  "__kernel_sin": {
+    "cycles": 43776,
+    "power": 35934.41283070779,
+    "latency": 3.50208e-05,
+    "energy": 0.028747530264566237
+  },
+  "cos": {
+    "cycles": 72794,
+    "power": 70142.59743785262,
+    "latency": 5.82352e-05,
+    "energy": 0.056114077950282094
+  },
+  "__kernel_cos": {
+    "cycles": 59488,
+    "power": 73053.26883518447,
+    "latency": 4.7590400000000004e-05,
+    "energy": 0.05844261506814758
+  },
+  "__ieee754_rem_pio2": {
+    "cycles": 125136,
+    "power": 155143.77219988266,
+    "latency": 0.0001001088,
+    "energy": 0.12411501775990612
+  },
+  "fabs": {
+    "cycles": 8960,
+    "power": 3266.301183855002,
+    "latency": 7.168000000000001e-06,
+    "energy": 0.0026130409470840016
+  },
+  "_ZNSo9_M_insertIdEERSoT_": {
+    "cycles": 57344,
+    "power": 42892.240776732026,
+    "latency": 4.5875200000000004e-05,
+    "energy": 0.03431379262138562
+  },
+  "_ZNSo6sentryC1ERSo": {
+    "cycles": 55296,
+    "power": 31150.586667925996,
+    "latency": 4.42368e-05,
+    "energy": 0.0249204693343408
+  },
+  "_ZNSt19ostreambuf_iteratorIcSt11char_traitsIcEEC1ERSo": {
+    "cycles": 10240,
+    "power": 8220.246939723049,
+    "latency": 8.192e-06,
+    "energy": 0.0065761975517784396
+  },
+  "_ZNKSt9basic_iosIcSt11char_traitsIcEE4fillEv": {
+    "cycles": 13318,
+    "power": 8984.634248660475,
+    "latency": 1.0654400000000001e-05,
+    "energy": 0.0071877073989283806
+  },
+  "_ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc": {
+    "cycles": 18,
+    "power": 7.10412886515001,
+    "latency": 1.44e-08,
+    "energy": 5.683303092120008e-06
+  },
+  "_ZNKSt5ctypeIcE13_M_widen_initEv": {
+    "cycles": 1310,
+    "power": 2478.5132334829227,
+    "latency": 1.048e-06,
+    "energy": 0.0019828105867863385
+  },
+  "_ZNKSt5ctypeIcE8do_widenEPKcS2_Pc": {
+    "cycles": 17,
+    "power": 13.434755925154361,
+    "latency": 1.3600000000000001e-08,
+    "energy": 1.074780474012349e-05
+  },
+  "memcmp": {
+    "cycles": 2064,
+    "power": 4009.8993589906554,
+    "latency": 1.6512e-06,
+    "energy": 0.0032079194871925247
+  },
+  "_ZNKSt5ctypeIcE8do_widenEc": {
+    "cycles": 4,
+    "power": 3.6454254284096,
+    "latency": 3.2e-09,
+    "energy": 2.9163403427276804e-06
+  },
+  "_ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE3putES3_RSt8ios_basecd": {
+    "cycles": 14383,
+    "power": 14764.518734826373,
+    "latency": 1.15064e-05,
+    "energy": 0.0118116149878611
+  },
+  "_ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_RSt8ios_basecd": {
+    "cycles": 7169,
+    "power": 4958.45120454443,
+    "latency": 5.735200000000001e-06,
+    "energy": 0.0039667609636355435
+  },
+  "_ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE15_M_insert_floatIdEES3_S3_RSt8ios_baseccT_": {
+    "cycles": 123788,
+    "power": 161054.10999683774,
+    "latency": 9.90304e-05,
+    "energy": 0.12884328799747022
+  },
+  "_ZNKSt11__use_cacheISt16__numpunct_cacheIcEEclERKSt6locale": {
+    "cycles": 26624,
+    "power": 21847.978962665493,
+    "latency": 2.12992e-05,
+    "energy": 0.017478383170132394
+  },
+  "_ZNSt10__num_base15_S_format_floatERKSt8ios_basePcc": {
+    "cycles": 41984,
+    "power": 65687.21450121846,
+    "latency": 3.35872e-05,
+    "energy": 0.05254977160097477
+  },
+  "_ZNSt6locale5facet15_S_get_c_localeEv": {
+    "cycles": 16384,
+    "power": 14335.943054748877,
+    "latency": 1.31072e-05,
+    "energy": 0.011468754443799103
+  },
+  "_ZNSt6locale5facet18_S_initialize_onceEv": {
+    "cycles": 6144,
+    "power": 10907.72414437417,
+    "latency": 4.9152e-06,
+    "energy": 0.008726179315499336
+  },
+  "_ZNSt6locale5facet18_S_create_c_localeERPiPKcS1_": {
+    "cycles": 16384,
+    "power": 17740.584513129623,
+    "latency": 1.31072e-05,
+    "energy": 0.0141924676105037
+  },
+  "_ZSt16__convert_from_vRKPiPciPKcz": {
+    "cycles": 57391,
+    "power": 34845.34178497169,
+    "latency": 4.59128e-05,
+    "energy": 0.027876273427977355
+  },
+  "setlocale": {
+    "cycles": 16384,
+    "power": 11361.306584834007,
+    "latency": 1.31072e-05,
+    "energy": 0.009089045267867206
+  },
+  "vsnprintf": {
+    "cycles": 32768,
+    "power": 31195.68398345513,
+    "latency": 2.62144e-05,
+    "energy": 0.024956547186764103
+  },
+  "_svfprintf_r": {
+    "cycles": 738351,
+    "power": 1006823.824408778,
+    "latency": 0.0005906808000000001,
+    "energy": 0.8054590595270225
+  },
+  "_localeconv_r": {
+    "cycles": 12288,
+    "power": 22722.613169668013,
+    "latency": 9.8304e-06,
+    "energy": 0.018178090535734413
+  },
+  "__extenddftf2": {
+    "cycles": 61422,
+    "power": 44334.219013888476,
+    "latency": 4.91376e-05,
+    "energy": 0.035467375211110784
+  },
+  "_ldcheck": {
+    "cycles": 30767,
+    "power": 26129.003770748255,
+    "latency": 2.46136e-05,
+    "energy": 0.020903203016598607
+  },
+  "e113toe.isra.0": {
+    "cycles": 266216,
+    "power": 389208.3103883541,
+    "latency": 0.0002129728,
+    "energy": 0.3113666483106833
+  },
+  "eshift.part.0": {
+    "cycles": 77672,
+    "power": 84569.56112091737,
+    "latency": 6.21376e-05,
+    "energy": 0.0676556488967339
+  },
+  "eshdn1": {
+    "cycles": 4061105,
+    "power": 5187364.732445361,
+    "latency": 0.003248884,
+    "energy": 4.149891785956289
+  },
+  "emovo.constprop.0": {
+    "cycles": 641714,
+    "power": 962804.9783349765,
+    "latency": 0.0005133712000000001,
+    "energy": 0.7702439826679811
+  },
+  "_ldtoa_r": {
+    "cycles": 6047112,
+    "power": 7876458.431744757,
+    "latency": 0.0048376896,
+    "energy": 6.301166745395807
+  },
+  "ecmp": {
+    "cycles": 1408542,
+    "power": 1970692.7841147417,
+    "latency": 0.0011268336,
+    "energy": 1.5765542272917934
+  },
+  "emovi": {
+    "cycles": 5939832,
+    "power": 9226337.481850797,
+    "latency": 0.0047518656,
+    "energy": 7.381069985480638
+  },
+  "ediv": {
+    "cycles": 17228588,
+    "power": 24567037.432181355,
+    "latency": 0.013782870400000001,
+    "energy": 19.653629945745084
+  },
+  "m16m": {
+    "cycles": 11518884,
+    "power": 15824681.59392188,
+    "latency": 0.009215107200000001,
+    "energy": 12.659745275137503
+  },
+  "emdnorm": {
+    "cycles": 1281968,
+    "power": 1596731.7408200211,
+    "latency": 0.0010255744,
+    "energy": 1.2773853926560168
+  },
+  "enormlz": {
+    "cycles": 1762843,
+    "power": 2379558.3971564076,
+    "latency": 0.0014102744000000001,
+    "energy": 1.9036467177251262
+  },
+  "emul": {
+    "cycles": 968954,
+    "power": 1562898.695246616,
+    "latency": 0.0007751632,
+    "energy": 1.250318956197293
+  },
+  "eshup1": {
+    "cycles": 8095603,
+    "power": 10158752.863241779,
+    "latency": 0.0064764824000000006,
+    "energy": 8.127002290593424
+  },
+  "eiremain": {
+    "cycles": 2188828,
+    "power": 2927197.122814567,
+    "latency": 0.0017510624,
+    "energy": 2.3417576982516533
+  },
+  "sprintf": {
+    "cycles": 34816,
+    "power": 26451.665301923073,
+    "latency": 2.7852800000000002e-05,
+    "energy": 0.02116133224153846
+  },
+  "__ssprint_r": {
+    "cycles": 205619,
+    "power": 169860.97643072205,
+    "latency": 0.0001644952,
+    "energy": 0.13588878114457764
+  },
+  "memmove": {
+    "cycles": 120846,
+    "power": 183726.16122890988,
+    "latency": 9.667680000000001e-05,
+    "energy": 0.14698092898312792
+  },
+  "_Balloc": {
+    "cycles": 31808,
+    "power": 19348.705285562584,
+    "latency": 2.54464e-05,
+    "energy": 0.015478964228450067
+  },
+  "_calloc_r": {
+    "cycles": 64,
+    "power": 75.40867734024259,
+    "latency": 5.12e-08,
+    "energy": 6.032694187219408e-05
+  },
+  "strcpy": {
+    "cycles": 33093,
+    "power": 39366.036981968085,
+    "latency": 2.6474400000000002e-05,
+    "energy": 0.031492829585574464
+  },
+  "__eqtf2": {
+    "cycles": 33816,
+    "power": 53036.3757545589,
+    "latency": 2.70528e-05,
+    "energy": 0.04242910060364713
+  },
+  "_ZNKSt5ctypeIcE5widenEPKcS2_Pc": {
+    "cycles": 26624,
+    "power": 21431.359390973448,
+    "latency": 2.12992e-05,
+    "energy": 0.017145087512778757
+  },
+  "_ZNSt11char_traitsIcE4findEPKcjRS1_": {
+    "cycles": 7168,
+    "power": 7579.324686230333,
+    "latency": 5.7344000000000005e-06,
+    "energy": 0.006063459748984266
+  },
+  "memchr": {
+    "cycles": 41713,
+    "power": 66962.43966933766,
+    "latency": 3.33704e-05,
+    "energy": 0.053569951735470134
+  },
+  "_ZSt7__writeIcESt19ostreambuf_iteratorIT_St11char_traitsIS1_EES4_PKS1_i": {
+    "cycles": 24576,
+    "power": 13227.764404179723,
+    "latency": 1.96608e-05,
+    "energy": 0.010582211523343779
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEE5sputnEPKci": {
+    "cycles": 12335,
+    "power": 9522.771771454565,
+    "latency": 9.868000000000001e-06,
+    "energy": 0.007618217417163652
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE6xsputnEPKci": {
+    "cycles": 62982,
+    "power": 64914.62350247764,
+    "latency": 5.03856e-05,
+    "energy": 0.05193169880198212
+  },
+  "_ZNKSt23__codecvt_abstract_baseIcc10_mbstate_tE13always_noconvEv": {
+    "cycles": 8196,
+    "power": 0,
+    "latency": 6.5568000000000005e-06,
+    "energy": 0.0
+  },
+  "_ZNKSt7codecvtIcc10_mbstate_tE16do_always_noconvEv": {
+    "cycles": 6148,
+    "power": 7469.476702811271,
+    "latency": 4.9184e-06,
+    "energy": 0.005975581362249017
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEE6xsputnEPKci": {
+    "cycles": 79936,
+    "power": 69197.75633463392,
+    "latency": 6.394880000000001e-05,
+    "energy": 0.05535820506770713
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE8overflowEi": {
+    "cycles": 22058,
+    "power": 15626.911730752669,
+    "latency": 1.76464e-05,
+    "energy": 0.012501529384602136
+  },
+  "_ZNSo6sentryD1Ev": {
+    "cycles": 38912,
+    "power": 12707.578240754669,
+    "latency": 3.11296e-05,
+    "energy": 0.010166062592603735
+  },
+  "_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i": {
+    "cycles": 24064,
+    "power": 20116.922248956667,
+    "latency": 1.92512e-05,
+    "energy": 0.016093537799165336
+  },
+  "_ZSt15__ostream_writeIcSt11char_traitsIcEEvRSt13basic_ostreamIT_T0_EPKS3_i": {
+    "cycles": 10240,
+    "power": 5503.77179830252,
+    "latency": 8.192e-06,
+    "energy": 0.004403017438642016
+  },
+  "_Bfree": {
+    "cycles": 11253,
+    "power": 3729.270213263021,
+    "latency": 9.0024e-06,
+    "energy": 0.002983416170610417
+  },
+  "_ZNSo3putEc": {
+    "cycles": 16896,
+    "power": 13994.610936337918,
+    "latency": 1.35168e-05,
+    "energy": 0.011195688749070336
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEE5sputcEc": {
+    "cycles": 6144,
+    "power": 5354.568020438374,
+    "latency": 4.9152e-06,
+    "energy": 0.004283654416350699
+  },
+  "_ZNSo5flushEv": {
+    "cycles": 11264,
+    "power": 8030.419719267261,
+    "latency": 9.011200000000001e-06,
+    "energy": 0.006424335775413809
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEE7pubsyncEv": {
+    "cycles": 2048,
+    "power": 0,
+    "latency": 1.6384e-06,
+    "energy": 0.0
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE4syncEv": {
+    "cycles": 8193,
+    "power": 5813.719160312612,
+    "latency": 6.5544e-06,
+    "energy": 0.00465097532825009
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE22_M_convert_to_externalEPci": {
+    "cycles": 20992,
+    "power": 9494.848765488292,
+    "latency": 1.67936e-05,
+    "energy": 0.0075958790123906335
+  },
+  "_ZNSt12__basic_fileIcE6xsputnEPKci": {
+    "cycles": 6656,
+    "power": 4806.102840386068,
+    "latency": 5.3248e-06,
+    "energy": 0.0038448822723088547
+  },
+  "_ZNSt12__basic_fileIcE2fdEv": {
+    "cycles": 5632,
+    "power": 4193.335057459569,
+    "latency": 4.5056000000000005e-06,
+    "energy": 0.0033546680459676553
+  },
+  "fileno": {
+    "cycles": 9728,
+    "power": 5797.76804187457,
+    "latency": 7.7824e-06,
+    "energy": 0.004638214433499656
+  },
+  "_ZN12_GLOBAL__N_1L6xwriteEiPKci": {
+    "cycles": 17920,
+    "power": 8187.18026974704,
+    "latency": 1.4336000000000001e-05,
+    "energy": 0.006549744215797632
+  },
+  "write": {
+    "cycles": 4096,
+    "power": 3789.6623431151665,
+    "latency": 3.2768e-06,
+    "energy": 0.003031729874492133
+  },
+  "_write_r": {
+    "cycles": 11264,
+    "power": 7741.356759712989,
+    "latency": 9.011200000000001e-06,
+    "energy": 0.006193085407770391
+  },
+  "_write": {
+    "cycles": 2645090,
+    "power": 3492589.2492254353,
+    "latency": 0.002116072,
+    "energy": 2.794071399380348
+  },
+  "_ZNSt14basic_ofstreamIcSt11char_traitsIcEE5closeEv": {
+    "cycles": 14,
+    "power": 8.19010753410072,
+    "latency": 1.1200000000000001e-08,
+    "energy": 6.552086027280577e-06
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE5closeEv": {
+    "cycles": 55,
+    "power": 40.75895746121154,
+    "latency": 4.4000000000000004e-08,
+    "energy": 3.260716596896923e-05
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE19_M_terminate_outputEv": {
+    "cycles": 40,
+    "power": 15.59342939052087,
+    "latency": 3.2e-08,
+    "energy": 1.2474743512416697e-05
+  },
+  "_ZZNSt13basic_filebufIcSt11char_traitsIcEE5closeEvEN14__close_sentryD1Ev": {
+    "cycles": 34,
+    "power": 21.573090774726378,
+    "latency": 2.7200000000000002e-08,
+    "energy": 1.7258472619781103e-05
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEE26_M_destroy_internal_bufferEv": {
+    "cycles": 24,
+    "power": 19.31259299240469,
+    "latency": 1.92e-08,
+    "energy": 1.5450074393923753e-05
+  },
+  "_ZdaPv": {
+    "cycles": 3,
+    "power": 4.84223750443792,
+    "latency": 2.4e-09,
+    "energy": 3.8737900035503354e-06
+  },
+  "_ZdlPv": {
+    "cycles": 6,
+    "power": 9.68447500887584,
+    "latency": 4.8e-09,
+    "energy": 7.747580007100671e-06
+  },
+  "free": {
+    "cycles": 10,
+    "power": 14.80336852779362,
+    "latency": 8e-09,
+    "energy": 1.1842694822234895e-05
+  },
+  "_free_r": {
+    "cycles": 125,
+    "power": 150.60115698566807,
+    "latency": 1.0000000000000001e-07,
+    "energy": 0.00012048092558853445
+  },
+  "_ZNSt12__basic_fileIcE5closeEv": {
+    "cycles": 33,
+    "power": 16.08006121812928,
+    "latency": 2.64e-08,
+    "energy": 1.2864048974503424e-05
+  },
+  "fclose": {
+    "cycles": 5,
+    "power": 7.40168426389681,
+    "latency": 4e-09,
+    "energy": 5.9213474111174476e-06
+  },
+  "_fclose_r": {
+    "cycles": 42,
+    "power": 18.346091423396967,
+    "latency": 3.36e-08,
+    "energy": 1.4676873138717574e-05
+  },
+  "__sflush_r": {
+    "cycles": 24,
+    "power": 16.91388576603226,
+    "latency": 1.92e-08,
+    "energy": 1.3531108612825808e-05
+  },
+  "__sclose": {
+    "cycles": 4,
+    "power": 7.40168426389681,
+    "latency": 3.2e-09,
+    "energy": 5.9213474111174476e-06
+  },
+  "_close_r": {
+    "cycles": 19,
+    "power": 15.11983742131443,
+    "latency": 1.52e-08,
+    "energy": 1.2095869937051546e-05
+  },
+  "_close": {
+    "cycles": 5135,
+    "power": 6776.427429136754,
+    "latency": 4.108e-06,
+    "energy": 0.005421141943309403
+  },
+  "__sfp_lock_acquire": {
+    "cycles": 3,
+    "power": 3.6454254284096,
+    "latency": 2.4e-09,
+    "energy": 2.9163403427276804e-06
+  },
+  "__sfp_lock_release": {
+    "cycles": 3,
+    "power": 3.6454254284096,
+    "latency": 2.4e-09,
+    "energy": 2.9163403427276804e-06
+  },
+  "_ZNSt14basic_ofstreamIcSt11char_traitsIcEED1Ev": {
+    "cycles": 6,
+    "power": 7.74715593208916,
+    "latency": 4.8e-09,
+    "energy": 6.197724745671328e-06
+  },
+  "_ZNSt14basic_ofstreamIcSt11char_traitsIcEED4Ev": {
+    "cycles": 44,
+    "power": 45.556860730447355,
+    "latency": 3.5200000000000004e-08,
+    "energy": 3.644548858435788e-05
+  },
+  "_ZNSt13basic_filebufIcSt11char_traitsIcEED1Ev": {
+    "cycles": 21,
+    "power": 24.28612067681376,
+    "latency": 1.68e-08,
+    "energy": 1.942889654145101e-05
+  },
+  "_ZNSt12__basic_fileIcED1Ev": {
+    "cycles": 3,
+    "power": 4.84223750443792,
+    "latency": 2.4e-09,
+    "energy": 3.8737900035503354e-06
+  },
+  "_ZNSt15basic_streambufIcSt11char_traitsIcEED1Ev": {
+    "cycles": 8,
+    "power": 12.29183803778028,
+    "latency": 6.4e-09,
+    "energy": 9.833470430224225e-06
+  },
+  "_ZNSoD2Ev": {
+    "cycles": 5,
+    "power": 4.84223750443792,
+    "latency": 4e-09,
+    "energy": 3.8737900035503354e-06
+  },
+  "_ZNSoD4Ev": {
+    "cycles": 13,
+    "power": 6.2048721878684905,
+    "latency": 1.04e-08,
+    "energy": 4.9638977502947926e-06
+  },
+  "_ZNSt9basic_iosIcSt11char_traitsIcEED1Ev": {
+    "cycles": 7,
+    "power": 12.29183803778028,
+    "latency": 5.6000000000000005e-09,
+    "energy": 9.833470430224225e-06
+  },
+  "_ZNSt8ios_baseD1Ev": {
+    "cycles": 25,
+    "power": 32.43568749551864,
+    "latency": 2e-08,
+    "energy": 2.5948549996414914e-05
+  },
+  "_ZNSt8ios_base17_M_call_callbacksENS_5eventE": {
+    "cycles": 17,
+    "power": 3.6454254284096,
+    "latency": 1.3600000000000001e-08,
+    "energy": 2.9163403427276804e-06
+  },
+  "_ZNSt8ios_base20_M_dispose_callbacksEv": {
+    "cycles": 15,
+    "power": 5.33050692456967,
+    "latency": 1.2e-08,
+    "energy": 4.2644055396557366e-06
+  },
+  "_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv": {
+    "cycles": 8,
+    "power": 10.086885895491559,
+    "latency": 6.4e-09,
+    "energy": 8.069508716393246e-06
+  },
+  "all": {
+    "Total Inst": 58964576,
+    "IPC": 0.8725901230108606,
+    "Total Func": 174,
+    "cycles": 67574196,
+    "latency": 0.05405935679999999,
+    "energy": 73.59956838380145,
+    "power": 91999460.47975184,
+    "avg_power_cycle": 1.3614584549367312
+  }
+}

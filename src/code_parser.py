@@ -21,6 +21,7 @@ def parse_code(file_path):
         if re.match(r'^\s*//anotacao:\s*$', line):
             if i + 1 < len(lines):
                 modifiable_lines.append(i + 1)
+            continue  # Pula a contagem lógica para as anotações
         
         logical_line_count += 1
         physical_to_logical[i] = logical_line_count
