@@ -5,7 +5,7 @@ Este projeto implementa um framework para análise de variantes de código aprox
 ## Estrutura do Projeto
 
 ```
-mestrado/
+PaCA/
 ├── src/                    # Código-fonte principal
 │   ├── apps/               # Aplicações suportadas
 │   ├── database/           # Módulos de persistência
