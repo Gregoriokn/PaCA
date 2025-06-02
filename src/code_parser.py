@@ -12,16 +12,25 @@ def parse_code(file_path):
     physical_to_logical = {}
     logical_line_count = 0
     
+    # Padrão para encontrar qualquer tipo de anotação, opcionalmente seguida por '\'
+    # Isso cobre:
+    # //anotacao:
+    # /*anotacao:*/
+    # //anotacao: \
+    # /*anotacao:*/ \
+    annotation_pattern = re.compile(r'^\s*(?://anotacao:|/\*anotacao:\*/)\s*(?:\\)?\s*$')
+    
     for i, line in enumerate(lines):
         # Ignora linhas em branco
         if re.match(r'^\s*$', line):
             continue
         
-        # Verifica se a linha contém //anotacao: independente de espaços
-        if re.match(r'^\s*//anotacao:\s*$', line):
+        # Verifica se a linha contém a anotação
+        if annotation_pattern.match(line):
+            # A linha seguinte à anotação é considerada modificável
             if i + 1 < len(lines):
-                modifiable_lines.append(i + 1)
-            continue  # Pula a contagem lógica para as anotações
+                modifiable_lines.append(i + 1) # Adiciona o índice físico (base 0) da linha de código
+            continue  # Pula a contagem lógica para as linhas de anotação
         
         logical_line_count += 1
         physical_to_logical[i] = logical_line_count

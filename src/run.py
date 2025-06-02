@@ -16,7 +16,8 @@ from utils.file_utils import ensure_dirs, short_hash, generate_report, save_chec
 AVAILABLE_APPS = {
      #"nova_aplicacao": "apps.nova_aplicacao",  Adicione esta linha
     "kinematics": "apps.kinematics",
-    "fft": "apps.fft"
+    "fft": "apps.fft",
+    "jmeint": "apps.jmeint"
 }
 
 def check_dependencies():
@@ -78,9 +79,16 @@ def main():
     parser = argparse.ArgumentParser(description='Simulador de variantes aproximadas')
     parser.add_argument('--app', type=str, default='kinematics',
                       help=f'Tipo de aplicação. Opções: {", ".join(AVAILABLE_APPS.keys())}')
-    # Adicione uma opção para controlar o paralelismo
     parser.add_argument('--workers', type=int, default=0,
                       help='Número de workers. 0 para usar CPU count - 1')
+    
+    # Adiciona grupo para modos de execução mutuamente exclusivos
+    execution_mode_group = parser.add_mutually_exclusive_group(required=True)
+    execution_mode_group.add_argument('--forcabruta', action='store_true',
+                                      help='Executa no modo força bruta (padrão anterior).')
+    execution_mode_group.add_argument('--arvorePoda', action='store_true',
+                                      help='Executa no modo árvore de poda com controle de variantes e regras.')
+    
     args = parser.parse_args()
     
     # Verifica se as dependências estão disponíveis
@@ -98,104 +106,106 @@ def main():
     
     # Configura monitor de status de variantes
     status_monitor = VariantStatusMonitor()
-    
-    # Encontra as variantes a serem simuladas baseado no tipo de aplicação
-    variants_to_simulate, _ = app_module.find_variants_to_simulate(BASE_CONFIG)
-    
-    # Verifica se existe checkpoint para continuar execução anterior
-    processed_variants_set, processed_count, total_count = load_checkpoint(BASE_CONFIG)
-    if processed_variants_set and total_count > 0:
-        resume = input(f"Encontrado checkpoint com {processed_count}/{total_count} variantes processadas. Continuar? (s/n): ")
-        if resume.lower() in ('s', 'sim', 'y', 'yes'):
-            # Filtra as variantes já processadas
-            variants_to_simulate = [(f, h) for f, h in variants_to_simulate if h not in processed_variants_set]
-            print(f"Continuando execução com {len(variants_to_simulate)} variantes pendentes...")
-        else:
-            # Reinicia do zero
-            processed_variants_set = set()
-    else:
-        processed_variants_set = set()
-    
-    # Inicia o monitor de status
-    status_monitor.start()
-    
-    # Antes do ThreadPoolExecutor
-    start_time = datetime.now()
-    
-    # Processa as variantes em paralelo
-    if variants_to_simulate:
-        print(f"Processando {len(variants_to_simulate)} variantes...")
-        
-        successful_variants = 0
-        failed_variants = 0
-        
-        # E ajuste o código:
-        if args.workers > 0:
-            max_workers = args.workers
-        else:
-            max_workers = max(1, os.cpu_count() - 1)
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {}
-            for file, variant_hash in variants_to_simulate:
-                futures[executor.submit(
-                    app_module.simulate_variant, 
-                    file, 
-                    variant_hash, 
-                    BASE_CONFIG, 
-                    status_monitor
-                )] = (file, variant_hash)
-            
-            # Processa os resultados à medida que são concluídos
-            for future in as_completed(futures):
-                file, variant_hash = futures[future]
-                try:
-                    result = future.result()
-                    if result:
-                        successful_variants += 1
-                        print(f"Simulação da variante {short_hash(variant_hash)} concluída com sucesso")
-                        # Marca a variante como executada com sucesso
-                        add_executed_variant(variant_hash, BASE_CONFIG["executed_variants_file"])
-                    else:
-                        failed_variants += 1
-                        print(f"Falha na simulação da variante {short_hash(variant_hash)}")
-                        # Registra a variante que falhou
-                        add_failed_variant(variant_hash, "execution_failure", BASE_CONFIG["failed_variants_file"])
-                except Exception as e:
-                    failed_variants += 1
-                    print(f"Erro ao processar a variante {short_hash(variant_hash)}: {e}")
-                    # Registra a falha com o erro específico
-                    add_failed_variant(variant_hash, f"exception:{str(e)}", BASE_CONFIG["failed_variants_file"])
-                
-                processed_variants_set.add(variant_hash)
-                if len(processed_variants_set) % 5 == 0:  # Salva a cada 5 variantes
-                    save_checkpoint(len(processed_variants_set), len(variants_to_simulate), 
-                                   processed_variants_set, BASE_CONFIG)
-        
-        # Após processar todas as variantes
-        end_time = datetime.now()
-        execution_duration = (end_time - start_time).total_seconds()
 
-        # Gera relatório detalhado
-        report_data = {
-            "execution_start": start_time.isoformat(),
-            "execution_end": end_time.isoformat(),
-            "total_duration_seconds": execution_duration,
-            "successful_variants": successful_variants,
-            "failed_variants": failed_variants,
-            "workers_used": max_workers
-        }
-        generate_report(report_data, BASE_CONFIG)
+    if args.forcabruta:
+        print("Executando no modo Força Bruta...")
+        # Lógica existente para o modo força bruta
+        variants_to_simulate, _ = app_module.find_variants_to_simulate(BASE_CONFIG)
         
-        print(f"Processamento concluído: {successful_variants} com sucesso, {failed_variants} falhas")
-        return 0 if failed_variants == 0 else 1
-    else:
-        print("Nenhuma variante nova para simular")
+        processed_variants_set, processed_count, total_count = load_checkpoint(BASE_CONFIG)
+        if processed_variants_set and total_count > 0:
+            resume = input(f"Encontrado checkpoint com {processed_count}/{total_count} variantes processadas. Continuar? (s/n): ")
+            if resume.lower() in ('s', 'sim', 'y', 'yes'):
+                variants_to_simulate = [(f, h) for f, h in variants_to_simulate if h not in processed_variants_set]
+                print(f"Continuando execução com {len(variants_to_simulate)} variantes pendentes...")
+            else:
+                processed_variants_set = set()
+        else:
+            processed_variants_set = set()
+        
+        status_monitor.start()
+        start_time = datetime.now()
+        
+        if variants_to_simulate:
+            print(f"Processando {len(variants_to_simulate)} variantes...")
+            successful_variants = 0
+            failed_variants = 0
+            
+            if args.workers > 0:
+                max_workers = args.workers
+            else:
+                max_workers = max(1, os.cpu_count() - 1)
+            
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                futures = {}
+                for file, variant_hash in variants_to_simulate:
+                    futures[executor.submit(
+                        app_module.simulate_variant, 
+                        file, 
+                        variant_hash, 
+                        BASE_CONFIG, 
+                        status_monitor
+                    )] = (file, variant_hash)
+                
+                for future in as_completed(futures):
+                    file, variant_hash = futures[future]
+                    try:
+                        result = future.result()
+                        if result:
+                            successful_variants += 1
+                            print(f"Simulação da variante {short_hash(variant_hash)} concluída com sucesso")
+                            add_executed_variant(variant_hash, BASE_CONFIG["executed_variants_file"])
+                        else:
+                            failed_variants += 1
+                            print(f"Falha na simulação da variante {short_hash(variant_hash)}")
+                            add_failed_variant(variant_hash, "execution_failure", BASE_CONFIG["failed_variants_file"])
+                    except Exception as e:
+                        failed_variants += 1
+                        print(f"Erro ao processar a variante {short_hash(variant_hash)}: {e}")
+                        add_failed_variant(variant_hash, f"exception:{str(e)}", BASE_CONFIG["failed_variants_file"])
+                    
+                    processed_variants_set.add(variant_hash)
+                    if len(processed_variants_set) % 5 == 0:
+                        save_checkpoint(len(processed_variants_set), len(variants_to_simulate), 
+                                       processed_variants_set, BASE_CONFIG)
+            
+            end_time = datetime.now()
+            execution_duration = (end_time - start_time).total_seconds()
+            report_data = {
+                "execution_start": start_time.isoformat(),
+                "execution_end": end_time.isoformat(),
+                "total_duration_seconds": execution_duration,
+                "successful_variants": successful_variants,
+                "failed_variants": failed_variants,
+                "workers_used": max_workers
+            }
+            generate_report(report_data, BASE_CONFIG)
+            print(f"Processamento concluído: {successful_variants} com sucesso, {failed_variants} falhas")
+            status_monitor.stop()
+            return 0 if failed_variants == 0 else 1
+        else:
+            print("Nenhuma variante nova para simular")
+            status_monitor.stop()
+            return 0
+
+    elif args.arvorePoda:
+        print("Executando no modo Árvore de Poda...")
+        # Aqui você implementará a nova lógica de fluxo de execução
+        # Por exemplo, você pode querer uma maneira diferente de selecionar
+        # e ordenar as variantes, aplicar regras de poda, etc.
+        
+        # Exemplo de placeholder para a nova lógica:
+        # variants_to_simulate_ordered = app_module.find_variants_for_tree_pruning(BASE_CONFIG)
+        # process_variants_with_pruning_rules(variants_to_simulate_ordered, BASE_CONFIG, status_monitor, args.workers)
+        
+        print("Lógica para Árvore de Poda ainda não implementada.")
+        # Para o monitor de status, mesmo que não haja processamento ainda
+        status_monitor.start() # ou não, dependendo da lógica futura
+        # ... (lógica de inicialização e processamento para arvorePoda)
+        status_monitor.stop()
+        return 0
     
-    # Para o monitor de status
-    status_monitor.stop()
-    
-    print("Processamento concluído!")
+    print("Processamento concluído!") # Esta linha pode ser redundante dependendo dos retornos acima
     return 0
 
 if __name__ == '__main__':

@@ -44,26 +44,22 @@ def prepare_environment(base_config):
 
 def generate_variants(base_config):
     """Gera variantes específicas para FFT"""
-    from generator import generate_variants as gen_vars
+    from gera_variantes import main as gera_main
     
     # Configura o gerador para FFT
     config = {**base_config, **FFT_CONFIG}
     
     print(f"Gerando variantes para FFT a partir de {config['input_file_for_variants']}")
     
-    # Obtém os dados do arquivo original
-    lines, modifiable_lines, physical_to_logical = parse_code(config["input_file_for_variants"])
+    # Configuração específica para FFT
+    config_override = {
+        "input_file": config["input_file_for_variants"],
+        "operations_map": config["operations_map"],
+        "executed_variants_file": config["executed_variants_file"]
+    }
     
-    # Gera as variantes
-    return gen_vars(
-        lines, 
-        modifiable_lines,
-        physical_to_logical, 
-        config["operations_map"], 
-        config["input_dir"], 
-        os.path.basename(config["input_file_for_variants"]),
-        config["executed_variants_file"]
-    )
+    # Chama a função main do gera_variantes.py com a configuração personalizada
+    return gera_main(config_override)
 
 def find_variants_to_simulate(base_config):
     """Identifica as variantes que precisam ser simuladas"""

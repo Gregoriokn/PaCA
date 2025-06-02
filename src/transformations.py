@@ -6,7 +6,20 @@ def apply_transformation(line, operation_map):
     por chamadas de função equivalentes.
     """
     # Padrão mais abrangente para capturar também chamadas de função
-    operand = r'(?:\(-?[0-9\.]+\)|-?[\w\.]+(?:\([^\)]*\))?(?:f)?)'
+    operand = (
+        r'(?:'
+        # Chamada de função: func(args) ou arr[i](args)
+        r'(?:[a-zA-Z_]\w*(?:\[[^\]]+\])?)\([^\)]*\)'
+        # Acesso a array: arr[0], var[idx] (importante para o seu caso)
+        r'|[a-zA-Z_]\w*\[[^\]]+\]'
+        # Identificador simples: var, count
+        r'|[a-zA-Z_]\w*'
+        # Literal numérico: 123, -4.5, 1.0f
+        r'|-?[0-9\.]+(?:f)?'
+        # Literal numérico entre parênteses (da regex original)
+        r'|\(-?[0-9\.]+\)'
+        r')'
+    )
     
     for op, func in operation_map.items():
         if op in line:
