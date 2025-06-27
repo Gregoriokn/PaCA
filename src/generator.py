@@ -44,14 +44,15 @@ def generate_variants(lines, modifiable_lines, physical_to_logical, operation_ma
                 
             # Nome do arquivo de saída
             nome_base, extensao = os.path.splitext(file_name)
-            output_file = f"{base_path}_{len(modified_files) + 1}{extensao}"
+            # Modifique esta linha para usar o hash no nome do arquivo
+            output_file = f"{nome_base}_{codigo_hash}{extensao}"
             
             # Salvamento com tratamento especial para manter formatação
-            with open(output_file, 'w', newline='') as f:
+            with open(os.path.join(output_folder, output_file), 'w', newline='') as f:
                 f.writelines(modified_lines)
             
             print(f"Variante salva: {output_file}")
-            modified_files.append((output_file, codigo_hash))
+            modified_files.append((os.path.join(output_folder, output_file), codigo_hash))
     
     print(f"Total de variantes geradas: {len(modified_files)}")
     print(f"Total de variantes puladas: {skipped}")

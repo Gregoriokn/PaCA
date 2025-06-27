@@ -48,10 +48,13 @@ def main(config_override=None):
     
     # Define storage sempre relativo à raiz do projeto
     base_path = os.path.join(project_root, "storage")
-    output_folder = os.path.join(base_path, "variantes")
+    # COMENTAR ESTAS LINHAS QUE SOBRESCREVEM O --output:
+    # output_folder = os.path.join(base_path, "variantes")
+    # # Atualiza a configuração para manter consistência
+    # update_config({"output_folder": output_folder})
     
-    # Atualiza a configuração para manter consistência
-    update_config({"output_folder": output_folder})
+    # USAR o output_folder da configuração (que vem do --output)
+    output_folder = CONFIG["output_folder"]
     
     operation_map = CONFIG["operations_map"]
     executed_file = CONFIG["executed_variants_file"]

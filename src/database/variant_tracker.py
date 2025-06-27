@@ -1,6 +1,8 @@
+import json
 import os
 import logging
 import threading
+from datetime import datetime
 
 class VariantCache:
     """Classe singleton para gerenciar o cache de variantes executadas"""
@@ -71,31 +73,57 @@ class VariantCache:
         return self.variants.copy()
 
 
-def load_executed_variants(file_path="executados.txt"):
-    """Carrega os hashes das variantes já executadas a partir do cache"""
-    cache = VariantCache(file_path)
-    return cache.get_all_variants()
+def load_executed_variants(file_path, lock=None):
+    """Carrega o conjunto de hashes de variantes já executadas de um arquivo JSON."""
+    def do_load():
+        if not os.path.exists(file_path):
+            return {}
+        try:
+            with open(file_path, 'r') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            return {}
+
+    if lock:
+        with lock:
+            return do_load()
+    else:
+        return do_load()
+
+def add_executed_variant(variant_hash, file_path, lock=None):
+    """Adiciona o hash de uma variante executada com sucesso ao arquivo JSON."""
+    def do_add():
+        variants = load_executed_variants(file_path) # Não precisa de lock aqui, já estamos dentro de um
+        variants[variant_hash] = {"status": "success", "timestamp": datetime.now().isoformat()}
+        try:
+            with open(file_path, 'w') as f:
+                json.dump(variants, f, indent=2)
+            os.chmod(file_path, 0o666)
+        except IOError as e:
+            # Adicionar log de erro se o logging estiver configurado
+            print(f"Erro ao escrever no arquivo de variantes executadas: {e}")
+
+    if lock:
+        with lock:
+            do_add()
+    else:
+        do_add()
 
 
-def add_executed_variant(codigo_hash, file_path="executados.txt"):
-    """Adiciona o hash de uma variante executada no cache e no arquivo"""
-    cache = VariantCache(file_path)
-    return cache.add_variant(codigo_hash)
+def add_failed_variant(variant_hash, reason, file_path, lock=None):
+    """Adiciona o hash de uma variante que falhou ao arquivo JSON."""
+    def do_add_failed():
+        variants = load_executed_variants(file_path) # Não precisa de lock aqui, já estamos dentro de um
+        variants[variant_hash] = {"status": "failed", "reason": reason, "timestamp": datetime.now().isoformat()}
+        try:
+            with open(file_path, 'w') as f:
+                json.dump(variants, f, indent=2)
+            os.chmod(file_path, 0o666)
+        except IOError as e:
+            print(f"Erro ao escrever no arquivo de variantes falhas: {e}")
 
-
-def is_variant_executed(codigo_hash, file_path="executados.txt"):
-    """Verifica se uma variante já foi executada usando o cache"""
-    cache = VariantCache(file_path)
-    return cache.contains(codigo_hash)
-
-
-def add_failed_variant(variant_hash, reason, file_path):
-    """Registra uma variante que falhou junto com o motivo"""
-    try:
-        with open(file_path, "a") as f:
-            f.write(f"{variant_hash},{reason}\n")
-        logging.info(f"Variante com falha {variant_hash[:8]} registrada: {reason}")
-        return True
-    except Exception as e:
-        logging.error(f"Erro ao registrar variante com falha {variant_hash[:8]}: {e}")
-        return False
+    if lock:
+        with lock:
+            do_add_failed()
+    else:
+        do_add_failed()

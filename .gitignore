@@ -1,3 +1,17 @@
+# 1. Ignorar tudo por padrão.
+*
+
+# 2. Manter (não ignorar) os seguintes arquivos e pastas.
+# O próprio arquivo .gitignore
+!.gitignore
+
+# Arquivos importantes na raiz do projeto
+!README.md
+!requirements.txt
+
+# Pastas de código-fonte e dados com todo o seu conteúdo
+!src/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
