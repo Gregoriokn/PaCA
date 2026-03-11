@@ -149,7 +149,7 @@ def create_execution_workspace(app_name, execution_mode, base_config):
         "operacoes_dir": os.path.join(workspace_path, "operacoes"),
         "executed_variants_file": os.path.join(workspace_path, "executed_variants.json"),
         "failed_variants_file": os.path.join(workspace_path, "failed_variants.json"),
-        "checkpoint_file": os.path.join(workspace_path, "checkpoint.json")
+        "checkpoint_file": os.path.join("storage", f"checkpoint_{app_name}_{execution_mode}.json")
     })
     
     ensure_dirs(
@@ -533,8 +533,8 @@ def main():
         checkpoint_exists = os.path.exists(execution_config["checkpoint_file"])
         if checkpoint_exists:
             processed_variants_set, processed_count, total_count = load_checkpoint(execution_config)
-            resume = input(f"Found checkpoint with {processed_count}/{total_count} processed variants. Continue? (s/n): ")
-            if resume.lower() in ('s', 'sim', 'y', 'yes'):
+            if processed_variants_set and processed_count > 0:
+                logging.info(f"Found checkpoint with {processed_count}/{total_count} processed variants. Auto-resuming...")
                 variants_to_simulate = [(f, h) for f, h in variants_to_simulate if h not in processed_variants_set]
             else:
                 processed_variants_set = set()

@@ -44,8 +44,12 @@ def compile_variant(variant_file, variant_hash, config, status_monitor):
     os.chmod(exe_file, 0o755)
     return True
 
-def generate_dump(exe_file, dump_file, variant_id, status_monitor):
-    """Gera o dump do código objeto compilado"""
+def generate_dump(exe_file, dump_file, variant_id, status_monitor, config=None):
+    """Gera o dump do código objeto compilado se generate_dumps estiver enabled."""
+    if config and not config.get("generate_dumps", True):
+        logging.debug(f"[Variante {variant_id}] Dump generation disabled, skipping")
+        return True
+    
     status_monitor.update_status(variant_id, "Gerando dump")
     
     dump_cmd = [

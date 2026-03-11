@@ -1,6 +1,7 @@
 import os
 import glob
 import re
+import json
 import logging
 import shutil
 from datetime import datetime
@@ -96,13 +97,17 @@ def generate_report(data, config):
 
 def save_checkpoint(processed_count, total_variants, processed_hashes, config):
     """Salva o estado atual da execução"""
-    checkpoint_file = os.path.join(config["logs_dir"], "checkpoint.txt")
+    checkpoint_file = config.get("checkpoint_file") or os.path.join(config["logs_dir"], "checkpoint.json")
     
     try:
+        checkpoint_data = {
+            "processed": processed_count,
+            "total": total_variants,
+            "variant_hashes": list(processed_hashes)
+        }
+        
         with open(checkpoint_file, "w") as f:
-            f.write(f"{processed_count}/{total_variants}\n")
-            for variant_hash in processed_hashes:
-                f.write(f"{variant_hash}\n")
+            json.dump(checkpoint_data, f, indent=2)
         
         logging.info(f"Checkpoint salvo: {processed_count} de {total_variants} variantes processadas")
         return True
@@ -112,30 +117,21 @@ def save_checkpoint(processed_count, total_variants, processed_hashes, config):
 
 def load_checkpoint(config):
     """Carrega o último checkpoint salvo"""
-    checkpoint_file = os.path.join(config["logs_dir"], "checkpoint.txt")
+    checkpoint_file = config.get("checkpoint_file") or os.path.join(config["logs_dir"], "checkpoint.json")
     
     if not os.path.exists(checkpoint_file):
         return None, 0, 0
     
     try:
         with open(checkpoint_file, "r") as f:
-            lines = f.readlines()
-            if not lines:
-                return None, 0, 0
-            
-            # Primeira linha contém progresso
-            progress = lines[0].strip().split("/")
-            processed = int(progress[0])
-            total = int(progress[1])
-            
-            # Restante são as variantes já processadas
-            processed_variants = set()
-            for i in range(1, len(lines)):
-                variant = lines[i].strip()
-                if variant:
-                    processed_variants.add(variant)
-            
-            return processed_variants, processed, total
+            checkpoint_data = json.load(f)
+        
+        processed = checkpoint_data.get("processed", 0)
+        total = checkpoint_data.get("total", 0)
+        variant_hashes = checkpoint_data.get("variant_hashes", [])
+        processed_variants = set(variant_hashes)
+        
+        return processed_variants, processed, total
     except Exception as e:
         logging.error(f"Erro ao carregar checkpoint: {e}")
         return None, 0, 0

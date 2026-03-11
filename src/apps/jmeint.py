@@ -11,7 +11,7 @@ from database.variant_tracker import load_executed_variants
 from utils.file_utils import short_hash, copy_file, TempFiles
 from execution.compilation import generate_dump
 from execution.simulation import run_spike_simulation, save_modified_lines
-from transformations import apply_transformation
+from transformations import apply_transformation, detect_operations_per_line, save_operations_json
 from utils.prof5fake import contar_instrucoes_log, avaliar_modelo_energia
 
 # Configurações específicas para a aplicação JMEINT
@@ -320,6 +320,24 @@ def run_profiling_stage(resume_context, base_config, status_monitor):
             modified_indices = sorted([physical_to_logical[p] for p in physical_modified if p in physical_to_logical])
             
             save_modified_lines_txt(modified_indices, current_tritri_hash, config)
+            
+            # Save operations per line (same as FFT)
+            variant_file = resume_context.get("variant_file")
+            original_filepath = config.get("tritri_source_file")
+            if variant_file and original_filepath and os.path.exists(variant_file) and os.path.exists(original_filepath):
+                _, _, physical_to_logical = parse_code(original_filepath)
+                with open(variant_file, 'r') as f_v, open(original_filepath, 'r') as f_o:
+                    v_lines = f_v.readlines()
+                    o_lines = f_o.readlines()
+                
+                operations_per_line = detect_operations_per_line(
+                    o_lines, v_lines, physical_to_logical, config.get("operations_map", {})
+                )
+                if operations_per_line:
+                    operacoes_dir = config.get("operacoes_dir", "storage/operacoes")
+                    os.makedirs(operacoes_dir, exist_ok=True)
+                    operacoes_path = os.path.join(operacoes_dir, f"operacoes_{current_tritri_hash}.json")
+                    save_operations_json(operations_per_line, operacoes_path)
         except Exception:
             pass
 
@@ -358,7 +376,7 @@ def simulate_variant(current_tritri_filepath, current_tritri_hash, base_config, 
     )
     if not compiled_ok: return (None, None) if only_spike else False
 
-    if not generate_dump(exe_file, dump_file, variant_id, status_monitor): 
+    if not generate_dump(exe_file, dump_file, variant_id, status_monitor, config): 
         return (None, None) if only_spike else False
 
     sim_time = run_spike_simulation(

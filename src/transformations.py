@@ -41,9 +41,8 @@ def apply_transformation(line_content: str, operations_map: Dict[str, str]) -> s
     ops_pattern = "|".join([re.escape(op) for op in sorted_ops])
     
     # Step 2: Regex pattern for operands
-    # Captures: variables, struct members (.), arrays ([]), and pointers (->)
-    # Note: '(' and ')' are excluded to avoid capturing them as part of operand names
-    operand_pattern = r"[\w\.\[\]\->]+"
+    # Captures: variables, struct members (.), arrays ([]), pointers (->), parentheses and negative numbers
+    operand_pattern = r"[\w\.\[\]\->\(\)-]+"
     
     # Complete regex: (Operand1) (Spaces) (Operator) (Spaces) (Operand2)
     pattern = re.compile(rf"({operand_pattern})\s*({ops_pattern})\s*({operand_pattern})")

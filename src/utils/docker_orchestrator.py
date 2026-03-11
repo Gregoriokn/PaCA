@@ -68,7 +68,11 @@ class DockerOrchestrator:
         """
         try:
             import docker
-            self._client = docker.from_env()
+            # Try Docker Desktop socket first, then fall back to default
+            try:
+                self._client = docker.DockerClient(base_url='unix:///home/greg/.docker/desktop/docker.sock')
+            except:
+                self._client = docker.from_env()
             self._container = self._client.containers.get(self.container_id)
             
             # Check if container is running
@@ -125,10 +129,10 @@ class DockerOrchestrator:
             memory_based_workers = max(1, int(available_memory_gb / 0.5))
             
             # CPU-based workers
-            cpu_based_workers = max(1, cpu_count - 1)  # Leave 1 for host
+            cpu_based_workers = cpu_count  # Use all CPUs allocated to container
             
-            # Use the lower of the two, with a reasonable max
-            recommended_workers = min(memory_based_workers, cpu_based_workers, 8)
+            # Use CPU count (no memory limit - Spike is lightweight)
+            recommended_workers = cpu_based_workers
             
             self._max_workers = max(1, recommended_workers)
             logger.info(f"Detected max workers: {self._max_workers} (CPUs: {cpu_count}, Memory: {available_memory_gb:.1f}GB available)")
@@ -494,6 +498,10 @@ def run_simulation_in_container(
             # Sync the execution folder
             container_exec_path = f"/workspace/storage/executions/{latest_exec}"
             host_exec_path = os.path.join(storage_path, "executions", latest_exec)
+            
+            # Clean up unnecessary folders before sync (reduce size)
+            logger.info("Cleaning up executables and dumps before sync...")
+            orchestrator._container.exec_run(f"rm -rf {container_exec_path}/executables {container_exec_path}/dumps")
             
             if orchestrator.sync_from_container(container_exec_path, host_exec_path):
                 logger.info(f"Results copied to: {host_exec_path}")

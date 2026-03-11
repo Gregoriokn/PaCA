@@ -122,11 +122,9 @@ fptype CNDF ( fptype InputX )
     xLocal_3 = xK2_4 * (-1.821255978);
     //anotacao:
     xLocal_2 = xLocal_2 + xLocal_3;
-    //anotacao:
     xLocal_3 = xK2_5 * 1.330274429;
     //anotacao:
     xLocal_2 = xLocal_2 + xLocal_3;
-
     //anotacao:
     xLocal_1 = xLocal_2 + xLocal_1;
     //anotacao:
@@ -134,7 +132,6 @@ fptype CNDF ( fptype InputX )
 
     //printf("# xLocal: %10.10f\n", xLocal);
 
-    //anotacao:
     xLocal   = 1.0 - xLocal;
 
     OutputX  = xLocal;
@@ -142,7 +139,6 @@ fptype CNDF ( fptype InputX )
     //printf("# Output: %10.10f\n", OutputX);
     
     if (sign) {
-        //anotacao:
         OutputX = 1.0 - OutputX;
     }
     

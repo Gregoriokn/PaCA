@@ -127,7 +127,7 @@ def simulate_variant(variant_file, variant_hash, base_config, status_monitor):
             return False
         
         # Passo 2: Gerar o dump
-        if not generate_dump(exe_file, dump_file, variant_id, status_monitor):
+        if not generate_dump(exe_file, dump_file, variant_id, status_monitor, config):
             return False
         
         # Passo 3: Executar a simulação com Spike

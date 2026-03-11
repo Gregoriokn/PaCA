@@ -1,89 +1,420 @@
 {
-    "core": "RV32IMAFDC",
-    "freq": 125,
-    "insns": {
-        "add": {"cycles": 1, "power": 1.0},
-        "addi": {"cycles": 1, "power": 1.0},
-        "sub": {"cycles": 1, "power": 1.0},
-        "mul": {"cycles": 3, "power": 4.0},
-        "div": {"cycles": 10, "power": 8.0},
-        "rem": {"cycles": 10, "power": 8.0},
-        "and": {"cycles": 1, "power": 1.0},
-        "andi": {"cycles": 1, "power": 1.0},
-        "or": {"cycles": 1, "power": 1.0},
-        "ori": {"cycles": 1, "power": 1.0},
-        "xor": {"cycles": 1, "power": 1.0},
-        "xori": {"cycles": 1, "power": 1.0},
-        "sll": {"cycles": 1, "power": 1.0},
-        "slli": {"cycles": 1, "power": 1.0},
-        "srl": {"cycles": 1, "power": 1.0},
-        "srli": {"cycles": 1, "power": 1.0},
-        "sra": {"cycles": 1, "power": 1.0},
-        "srai": {"cycles": 1, "power": 1.0},
-        "slt": {"cycles": 1, "power": 1.0},
-        "slti": {"cycles": 1, "power": 1.0},
-        "sltu": {"cycles": 1, "power": 1.0},
-        "sltiu": {"cycles": 1, "power": 1.0},
-        "lui": {"cycles": 1, "power": 1.0},
-        "auipc": {"cycles": 1, "power": 1.0},
-        "jal": {"cycles": 2, "power": 2.0},
-        "jalr": {"cycles": 2, "power": 2.0},
-        "beq": {"cycles": 1, "power": 1.0},
-        "bne": {"cycles": 1, "power": 1.0},
-        "blt": {"cycles": 1, "power": 1.0},
-        "bge": {"cycles": 1, "power": 1.0},
-        "bltu": {"cycles": 1, "power": 1.0},
-        "bgeu": {"cycles": 1, "power": 1.0},
-        "lb": {"cycles": 2, "power": 2.0},
-        "lbu": {"cycles": 2, "power": 2.0},
-        "lh": {"cycles": 2, "power": 2.0},
-        "lhu": {"cycles": 2, "power": 2.0},
-        "lw": {"cycles": 2, "power": 2.0},
-        "sb": {"cycles": 2, "power": 2.0},
-        "sh": {"cycles": 2, "power": 2.0},
-        "sw": {"cycles": 2, "power": 2.0},
-        "fadd.s": {"cycles": 3, "power": 5.0},
-        "fsub.s": {"cycles": 3, "power": 5.0},
-        "fmul.s": {"cycles": 4, "power": 8.0},
-        "fdiv.s": {"cycles": 20, "power": 15.0},
-        "fsqrt.s": {"cycles": 25, "power": 18.0},
-        "fmadd.s": {"cycles": 5, "power": 10.0},
-        "fmsub.s": {"cycles": 5, "power": 10.0},
-        "fnmadd.s": {"cycles": 5, "power": 10.0},
-        "fnmsub.s": {"cycles": 5, "power": 10.0},
-        "flw": {"cycles": 2, "power": 2.5},
-        "fsw": {"cycles": 2, "power": 2.5},
-        "fcvt.w.s": {"cycles": 3, "power": 5.0},
-        "fcvt.s.w": {"cycles": 3, "power": 5.0},
-        "fmv.x.w": {"cycles": 1, "power": 1.5},
-        "fmv.w.x": {"cycles": 1, "power": 1.5},
-        "feq.s": {"cycles": 2, "power": 3.0},
-        "flt.s": {"cycles": 2, "power": 3.0},
-        "fle.s": {"cycles": 2, "power": 3.0},
-        "fmax.s": {"cycles": 3, "power": 4.0},
-        "fmin.s": {"cycles": 3, "power": 4.0},
-        "fsgnj.s": {"cycles": 1, "power": 1.5},
-        "fsgnjn.s": {"cycles": 1, "power": 1.5},
-        "fsgnjx.s": {"cycles": 1, "power": 1.5},
-        "fneg.s": {"cycles": 1, "power": 1.5},
-        "fabs.s": {"cycles": 1, "power": 1.5},
-        "fclass.s": {"cycles": 2, "power": 2.5},
-        "fcvt.l.s": {"cycles": 3, "power": 5.0},
-        "fcvt.s.l": {"cycles": 3, "power": 5.0},
-        "fmv.d": {"cycles": 1, "power": 2.0},
-        "fadd.d": {"cycles": 4, "power": 6.0},
-        "fmul.d": {"cycles": 5, "power": 10.0},
-        "ecall": {"cycles": 10, "power": 5.0},
-        "ebreak": {"cycles": 5, "power": 3.0},
-        "fence": {"cycles": 1, "power": 2.0},
-        "rdcycle": {"cycles": 1, "power": 1.0},
-        "rdtime": {"cycles": 1, "power": 1.0},
-        "rdinstret": {"cycles": 1, "power": 1.0},
-        "csrrw": {"cycles": 2, "power": 2.0},
-        "csrrs": {"cycles": 2, "power": 2.0},
-        "csrrc": {"cycles": 2, "power": 2.0},
-        "csrwi": {"cycles": 2, "power": 2.0},
-        "csrsi": {"cycles": 2, "power": 2.0},
-        "csrci": {"cycles": 2, "power": 2.0}
+  "core": "Sifive-e24",
+  "freq": 125,
+  "power": 0,
+  "insns": {
+    "addi": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+    "sw": {
+      "cycles": 1,
+      "power": 1.68508149616007
+    },
+    "li": {
+      "cycles": 1,
+      "power": 1.78153906313757
+    },
+    "lw": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+    "jal": {
+      "cycles": 2,
+      "power": 2.27234105284556
+    },
+    "mv": {
+      "cycles": 1,
+      "power": 1.58738251577357
+    },
+    "bge": {
+      "cycles": 2,
+      "power": 2.42193754848063
+    },
+    "add": {
+      "cycles": 1,
+      "power": 2.80050302071126
+    },
+    "j": {
+      "cycles": 2,
+      "power": 2.42111875221896
+    },
+    "ret": {
+      "cycles": 2,
+      "power": 1.8227127142048
+    },
+    "beqz": {
+      "cycles": 2,
+      "power": 2.62232419552682
+    },
+    "mul": {
+      "cycles": 1,
+      "power": 3.09445799540031
+    },
+    "bnez": {
+      "cycles": 2,
+      "power": 2.46742961031713
+    },
+    "bltu": {
+      "cycles": 2,
+      "power": 2.49500126115215
+    },
+    "blt": {
+      "cycles": 2,
+      "power": 2.49588627612914
+    },
+    "bltz": {
+      "cycles": 2,
+      "power": 2.49588627612914
+    },
+    "bne": {
+      "cycles": 2,
+      "power": 2.46742961031713
+    },
+    "bgeu": {
+      "cycles": 2,
+      "power": 2.42193754848063
+    },
+    "sltu": {
+      "cycles": 1,
+      "power": 2.43164329295233
+    },
+    "slli": {
+      "cycles": 1,
+      "power": 2.56255071559939
+    },
+    "srai": {
+      "cycles": 1,
+      "power": 2.79271137464731
+    },
+    "sub": {
+      "cycles": 1,
+      "power": 2.86561970961471
+    },
+    "or": {
+      "cycles": 1,
+      "power": 2.80842297521789
+    },
+     "addx": {
+      "cycles": 1,
+      "power": 2.764096481
+    },
+      "subx": {
+      "cycles": 1,
+      "power": 2.828366653
+    },
+      "mulx": {
+      "cycles": 1,
+      "power": 3.054230041
+    },
+      "divx": {
+      "cycles": 1,
+      "power": 3.054230041
+    },
+     "beq": {
+      "cycles": 2,
+      "power": 2.62232419552682
+    },
+     "andi": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+    "srli": {
+      "cycles": 1,
+      "power": 2.56255071559939
+    },
+     "xori": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+     "sltiu": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+     "lbu": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+    "lh": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+     "lhu": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+    "ori": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+     "jalr": {
+      "cycles": 2,
+      "power": 2.27234105284556
+    },
+     "and": {
+      "cycles": 1,
+      "power": 2.66000000000000
+    },
+     "sll": {
+      "cycles": 1,
+      "power": 2.45813530865941
+    },
+     "xor": {
+      "cycles": 1,
+      "power": 2.43164329295233
+    },
+     "sh": {
+      "cycles": 1,
+      "power": 1.68508149616007
+    },
+     "snez": {
+      "cycles": 1,
+      "power": 2.43164329295233
+    },
+     "blez": {
+      "cycles": 2,
+      "power": 2.42193754848063
+    },
+     "neg": {
+      "cycles": 1,
+      "power": 2.86561970961471
+    },
+     "jr": {
+      "cycles": 2,
+      "power": 2.27234105284556
+    },
+    "lui": {
+      "cycles": 2,
+      "power": 2.27234105284556
+    },
+    "epc": {
+      "cycles": 1,
+      "power": 1.82271271420480
+    },
+    "csrw": {
+      "cycles": 1,
+      "power": 1.68508149616007
+    },
+    "csrrw": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+    "csrr": {
+      "cycles": 1,
+      "power": 2.55944675945889
+    },
+    "auipc": {
+      "cycles": 1,
+      "power": 2.27234105284556
+    },
+    "fence": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+    "sfence.vma": {
+      "cycles": 1,
+      "power": 1.82271271420480
+    },
+    "bgez": {
+      "cycles": 2,
+      "power": 2.42193754848063
+    },
+    "sneg": {
+      "cycles": 1,
+      "power": 2.86561970961471
+    },
+    "sret": {
+      "cycles": 2,
+      "power": 1.82271271420480
+    },
+    "sb": {
+      "cycles": 1,
+      "power": 1.82271271420480
+    },
+    "not": {
+      "cycles": 1,
+      "power": 2.90491842765124
+    },
+    "ecall": {
+      "cycles": 1,
+      "power": 1.82271271420480
+    },
+     "calls": {
+      "cycles": 1,
+      "power": 0
+    },
+     "zext.b": {
+      "cycles": 1,
+      "power": 1.82271271420480
+    },
+     "fmul.s": {
+      "cycles": 2,
+      "power": 3.713349594
+    },
+     "fadd.s": {
+      "cycles": 2,
+      "power": 3.360603625
+    },
+     "fsub.s": {
+      "cycles": 2,
+      "power": 3.438743652
+    },
+     "fdiv.s": {
+      "cycles": 2,
+      "power": 3.713349594
+    },
+     "fmulx.s": {
+      "cycles": 2,
+      "power": 3.520255415
+    },
+     "faddx.s": {
+      "cycles": 2,
+      "power": 3.185852236
+    },
+     "fsubx.s": {
+      "cycles": 2,
+      "power": 3.349336317
+    },
+     "fdivx.s": {
+      "cycles": 2,
+      "power": 3.616802505
+      
+    },
+     "fcvt.d.s": {
+      "cycles": 1,
+      "power": 0
+    },
+     "fmv.w.x": {
+      "cycles": 1,
+      "power": 0
+    },
+     "fmv.x.w": {
+      "cycles": 1,
+      "power": 0
+    },
+     "flw": {
+      "cycles": 2,
+      "power": 0
+    },
+     "fsgnj.s": {
+      "cycles": 3,
+      "power": 0
+    },
+     "amoadd.w": {
+      "cycles": 1,
+      "power": 0
+    },
+     "amoswap.w": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.add": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.addi": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.addi16sp": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.addi4spn": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.and": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.andi": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.beqz": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.bnez": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.fsdsp": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.j": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.jal": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.jr": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.li": {
+      "cycles": 1,
+      "power": 0
+    },
+      "c.lui": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.lw": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.lwsp": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.mv": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.or": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.slli": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.srai": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.srli": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.sub": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.sw": {
+      "cycles": 1,
+      "power": 0
+    },
+     "trap_entry": {
+      "cycles": 1,
+      "power": 0
+    },
+     "seqz": {
+      "cycles": 1,
+      "power": 0
+    },
+     "sc.w": {
+      "cycles": 1,
+      "power": 0
+    },
+     "c.swsp": {
+      "cycles": 1,
+      "power": 0
     }
+  }
 }

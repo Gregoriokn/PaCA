@@ -12,14 +12,14 @@ from database.variant_tracker import load_executed_variants
 from utils.file_utils import short_hash, copy_file
 from execution.compilation import compile_variant, generate_dump
 from execution.simulation import run_spike_simulation, save_modified_lines
-from transformations import apply_transformation
+from transformations import apply_transformation, detect_operations_per_line, save_operations_json
 from utils.prof5fake import contar_instrucoes_log, avaliar_modelo_energia
 
 # Configurações específicas para a aplicação BLACKSCHOLES
 BLACKSCHOLES_CONFIG = {
     "app_name": "blackscholes",
     "original_file": "data/applications/blackscholes/src/blackscholes.c", 
-    "train_data_input": "data/applications/blackscholes/src/train.data/input/blackscholesTrain_100K.data",
+    "train_data_input": "data/applications/blackscholes/train.data/input/blackscholesTrain_1K.data",
     "source_pattern": "blackscholes_*.c", 
     "exe_prefix": "blackscholes_",
     "output_suffix": ".data", 
@@ -43,6 +43,13 @@ def cleanup_variant_files(variant_hash, config, preserve_logs=True):
     
     if preserve_logs:
         return
+    
+    for f in [spike_log_file, dump_file]:
+        if os.path.exists(f):
+            try:
+                os.remove(f)
+            except OSError:
+                pass
 
 def run_prof5_fake(spike_log_file, prof5_model, prof5_time_file, prof5_report_path, variant_id, status_monitor):
     """Executa o prof5fake para estimar energia e performance."""
@@ -211,6 +218,23 @@ def run_profiling_stage(resume_context, base_config, status_monitor):
         try:
             variant_filepath = resume_context["variant_filepath"]
             save_modified_lines(variant_filepath, config["original_file"], variant_hash, config, parse_code)
+            
+            # Save operations per line (same as FFT)
+            original_filepath = config["original_file"]
+            if os.path.exists(variant_filepath) and os.path.exists(original_filepath):
+                _, _, physical_to_logical = parse_code(original_filepath)
+                with open(variant_filepath, 'r') as f_v, open(original_filepath, 'r') as f_o:
+                    v_lines = f_v.readlines()
+                    o_lines = f_o.readlines()
+                
+                operations_per_line = detect_operations_per_line(
+                    o_lines, v_lines, physical_to_logical, config.get("operations_map", {})
+                )
+                if operations_per_line:
+                    operacoes_dir = config.get("operacoes_dir", "storage/operacoes")
+                    os.makedirs(operacoes_dir, exist_ok=True)
+                    operacoes_path = os.path.join(operacoes_dir, f"operacoes_{variant_hash}.json")
+                    save_operations_json(operations_per_line, operacoes_path)
         except Exception: pass
 
         status_monitor.update_status(variant_id, "Concluída")
@@ -238,7 +262,7 @@ def simulate_variant(variant_file, variant_hash, base_config, status_monitor, on
         return (None, None) if only_spike else False
     
     # 2. Dump
-    if not generate_dump(exe_file, dump_file, variant_id, status_monitor):
+    if not generate_dump(exe_file, dump_file, variant_id, status_monitor, config):
         return (None, None) if only_spike else False
     
     # 3. Simulação Spike

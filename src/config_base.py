@@ -29,7 +29,7 @@ BASE_CONFIG = {
     # Set container_id to enable Docker orchestration
     # Example: "3d0403713d454fa9f9906b45a7bc23694f326a623acb04022cb39acf1bea2007"
     # Leave as None to run locally
-    "docker_container_id": "3d0403713d454fa9f9906b45a7bc23694f326a623acb04022cb39acf1bea2007",
+    "docker_container_id": "5dd5660f6014",
     
     # Docker workspace path (inside container)
     "docker_workspace": "/workspace",
@@ -37,4 +37,8 @@ BASE_CONFIG = {
     # Sync settings
     "sync_to_container_before_run": True,
     "sync_from_container_after_run": True,  # Copia resultados de volta
+
+    # Dump generation (set to False to save disk space)
+    # Dumps are objdump disassembly - useful for debugging but not required for simulation
+    "generate_dumps": False,
 }

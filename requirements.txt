@@ -15,3 +15,8 @@ docker>=5.0.0
 pytest>=6.2.5
 black>=21.5b2
 pylint>=2.8.2
+
+# Jupyter notebook dependencies
+matplotlib>=3.4.0
+pyarrow>=6.0.0
+jupyter>=1.0.0

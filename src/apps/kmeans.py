@@ -14,6 +14,7 @@ from database.variant_tracker import load_executed_variants
 from utils.file_utils import short_hash, copy_file
 from execution.compilation import generate_dump
 from execution.simulation import run_spike_simulation, get_modified_logical_lines
+from transformations import detect_operations_per_line, save_operations_json
 from utils.prof5fake import contar_instrucoes_log, avaliar_modelo_energia
 
 # Configurações específicas para a aplicação Kmeans
@@ -48,6 +49,13 @@ def cleanup_variant_files(variant_hash, config, preserve_logs=True):
     
     if preserve_logs:
         return
+    
+    for f in [spike_log_file, dump_file]:
+        if os.path.exists(f):
+            try:
+                os.remove(f)
+            except OSError:
+                pass
 
 def run_prof5_fake(spike_log_file, prof5_model, prof5_time_file, prof5_report_path, variant_id, status_monitor):
     try:
@@ -205,6 +213,24 @@ def run_profiling_stage(resume_context, base_config, status_monitor):
         
         try:
             save_modified_lines_txt(resume_context["variant_file"], config["original_file"], resume_context["variant_hash"], config)
+            
+            # Save operations per line (same as FFT)
+            variant_file = resume_context["variant_file"]
+            original_filepath = config["original_file"]
+            if os.path.exists(variant_file) and os.path.exists(original_filepath):
+                _, _, physical_to_logical = parse_code(original_filepath)
+                with open(variant_file, 'r') as f_v, open(original_filepath, 'r') as f_o:
+                    v_lines = f_v.readlines()
+                    o_lines = f_o.readlines()
+                
+                operations_per_line = detect_operations_per_line(
+                    o_lines, v_lines, physical_to_logical, config.get("operations_map", {})
+                )
+                if operations_per_line:
+                    operacoes_dir = config.get("operacoes_dir", "storage/operacoes")
+                    os.makedirs(operacoes_dir, exist_ok=True)
+                    operacoes_path = os.path.join(operacoes_dir, f"operacoes_{resume_context['variant_hash']}.json")
+                    save_operations_json(operations_per_line, operacoes_path)
         except Exception: pass
 
         status_monitor.update_status(resume_context["variant_id"], "Concluída")
@@ -228,7 +254,7 @@ def simulate_variant(variant_file, variant_hash, base_config, status_monitor, on
     compiled_ok, exe_file = compile_kmeans_variant(variant_file, variant_hash, config, status_monitor)
     if not compiled_ok: return (None, None) if only_spike else False
     
-    if not generate_dump(exe_file, dump_file, variant_id, status_monitor):
+    if not generate_dump(exe_file, dump_file, variant_id, status_monitor, config):
         return (None, None) if only_spike else False
 
     input_file = config.get("train_data_input", "axbench/applications/kmeans/train.data/input/1.rgb")

@@ -550,7 +550,7 @@ def simulate_variant(current_variant_filepath, current_variant_hash, base_config
     if not compiled_ok: return (None, None) if only_spike else False
 
     # 2. Dump Generation
-    if not generate_dump(exe_file, dump_file, variant_id, status_monitor): 
+    if not generate_dump(exe_file, dump_file, variant_id, status_monitor, config): 
         return (None, None) if only_spike else False
 
     # 3. Spike Simulation
